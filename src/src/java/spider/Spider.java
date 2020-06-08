@@ -24,35 +24,5 @@ public class Spider {
     public void start() {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
 
-        try {
-            // Start spidering the target
-            System.out.println("Spidering target : " + TARGET);
-            ApiResponse resp = api.spider.scan(TARGET, null, null, null, null);
-            String scanID;
-            int progress;
-
-            // The scan returns a scan id to support concurrent scanning
-            scanID = ((ApiResponseElement) resp).getValue();
-            // Poll the status until it completes
-            while (true) {
-                Thread.sleep(1000);
-                progress = Integer.parseInt(((ApiResponseElement) api.spider.status(scanID)).getValue());
-                System.out.println("Spider progress : " + progress + "%");
-                if (progress >= 100) {
-                    break;
-                }
-            }
-            System.out.println("Spider completed");
-            // If required post process the spider results
-            List<ApiResponse> spiderResults = ((ApiResponseList) api.spider.results(scanID)).getItems();
-            for (ApiResponse response: spiderResults) {
-                System.out.println(response.toString());
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception : " + e.getMessage());
-            e.printStackTrace();
-        }
-
     }
 }

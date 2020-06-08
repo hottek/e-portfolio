@@ -14,7 +14,7 @@ public class Main {
         Spider spider = new Spider(ZAP_ADDRESS, ZAP_PORT, TARGET, ZAP_API_KEY);
         spider.start();
 
-        ActiveScan activeScan = new ActiveScan(ZAP_ADDRESS, ZAP_PORT, TARGET, ZAP_API_KEY);
-        activeScan.start();
+        // ActiveScan activeScan = new ActiveScan(ZAP_ADDRESS, ZAP_PORT, TARGET, ZAP_API_KEY);
+        // activeScan.start();
     }
 }
